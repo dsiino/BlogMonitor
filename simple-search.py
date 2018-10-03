@@ -15,12 +15,25 @@ btn.click()
 
 elem = driver.find_element_by_name("user")
 elem.clear()
-elem.send_keys("ABC12345")
-driver.find_element_by_name("pass").send_keys("secret-123")
+elem.send_keys("asd")
+driver.find_element_by_name("pass").send_keys("123")
 
-time.sleep(5)
+time.sleep(1)
 
-# driver.find_element_by_id("submit").click()
-# elem.send_keys(Keys.RETURN)
-# assert "bienvenue!" in driver.page_source
-driver.close()
+elem.send_keys(Keys.RETURN)
+driver.find_element_by_id("forum-pill").click()
+# stars = driver.find_elements(By.XPATH, "//tbody[@id='forum-body']/tr/td/i")
+stars = driver.find_elements_by_xpath("//tbody[@id='forum-body']/tr/td/i//preceding-sibling::*")
+# stars = driver.find_elements(By.XPATH, "//tbody[@id='forum-body']/tr/td/a[@onclick='invalidate_forum_cache()']")
+print(stars.__len__())
+# astar = driver.find_element(By.XPATH, "//tbody[@id='forum-body']/tr/td/i/preceding-sibling::a")
+# print(astar.text)
+# astar.click()
+
+for star in stars:
+    #     anchor = star.find_element_by_xpath(".//../a")
+    print(star.text)
+    star.click()
+# fa fa-star pull-right text-danger
+# assert "Forum" in driver.page_source
+# driver.close()
